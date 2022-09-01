@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion'
 import { Alert } from 'react-bootstrap';
 import { UserContext } from "../../components/context/userContext";
 import { API } from '../config/api';

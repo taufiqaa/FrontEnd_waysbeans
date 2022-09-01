@@ -2,12 +2,13 @@ import React from "react"
 import Header from "../molecules/header"
 import clip from "../../assets/clip.svg"
 import { useState } from 'react';
-// import { useNavigate } from 'react-router';
-// import { useMutation } from 'react-query';
+import { API } from '../config/api';
+import { useNavigate } from 'react-router';
+import { useMutation } from 'react-query';
 
 export default function AddProduct() {
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const [popUp, setPopUp] = React.useState(false);
     const [photoProduct, setPhotoProduct] = React.useState(<p>Photo Product</p>)
     const [preview, setPreview] = useState(null); //For image preview
@@ -16,6 +17,8 @@ export default function AddProduct() {
       title: '',
       price: '',
       image: '',
+      stock: '',
+      description: '',
     }); 
   
     // Handle change data on form
@@ -36,33 +39,35 @@ export default function AddProduct() {
       }
     };
   
-    // // Create function for handle insert product data with useMutation here ...
-    // const handleSubmit = useMutation(async (e) => {
-    //   try {
-    //     e.preventDefault();
+    // Create function for handle insert product data with useMutation here ...
+    const handleSubmit = useMutation(async (e) => {
+      try {
+        e.preventDefault();
   
-    //     // Configuration
-    //     const config = {
-    //       headers: {
-    //         'Content-type': 'multipart/form-data',
-    //       },
-    //     };
+        // Configuration
+        const config = {
+          headers: {
+            'Content-type': 'multipart/form-data',
+          },
+        };
   
-    //     // Store data with FormData as object
-    //     const formData = new FormData();
-    //     formData.set('title', form.title);
-    //     formData.set('price', form.price);
-    //     formData.set('image', form.image[0], form.image[0].name);
+        // Store data with FormData as object
+        const formData = new FormData();
+        formData.set('title', form.title);
+        formData.set('price', form.price);
+        formData.set('stock', form.stock);
+        formData.set('description', form.description);
+        formData.set('image', form.image[0], form.image[0].name);
   
-    //     // Insert product data
-    //     const response = await API.post('/product', formData, config);
-    //     console.log(response);
+        // Insert product data
+        const response = await API.post('/product', formData, config);
+        console.log(response);
   
-    //     navigate('/add-product');
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // });
+        navigate('/add-product');
+      } catch (error) {
+        console.log(error);
+      }
+    });
 
 
   return (
@@ -70,7 +75,7 @@ export default function AddProduct() {
     <Header />
         <section className="product-section">
             <form
-            // onSubmit={ (e) => handleSubmit.mutate(e) }
+            onSubmit={ (e) => handleSubmit.mutate(e) }
             >
                <h2>Product</h2>
                 <input className="titleProduct"
@@ -96,7 +101,7 @@ export default function AddProduct() {
                 />
                 <input className="descriptionProduct"
                  type="textarea"
-                 id="title" name="title"
+                 id="description" name="description"
                  placeholder="Product's Description"
                  onChange={ handleChange }
                  required

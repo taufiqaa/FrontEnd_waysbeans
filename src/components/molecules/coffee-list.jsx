@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import coffeeData from "./coffe-data";
+// import coffeeData from "./coffe-data";
+import { useQuery } from "react-query";
+import { API } from "../config/api";
+
 
 export default function CoffeeList() {
-  const [coffeeDatas] = useState(coffeeData);
+
   const navigate = useNavigate();
+
+  const { data: products } = useQuery('productsCache', async () => {
+    const res = await API.get('/products')
+    return res.data.data
+  })
+ 
   const sendToDetail = (id) => {
     navigate("/detail-product/" + id);
   };
@@ -12,12 +21,12 @@ export default function CoffeeList() {
   return (
     <section>
       <div className="drink-list">
-        {coffeeDatas?.map((data, index) => (
+        {products?.map((data, index) => (
           <div className="list-coffee">
             <div className="coffeImage">
               <img
                 alt="data"
-                src={data.pict}
+                src={data?.image}
                 id="mainImage"
                 onClick={() => sendToDetail(data?.id)}
               />

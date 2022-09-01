@@ -18,6 +18,8 @@ export default function UpdateProduct() {
   const [form, setForm] = useState({
     title: '',
     price: '',
+    stock: '',
+    description:'',
     image: '',
   }); //Store product data
 
@@ -29,6 +31,8 @@ export default function UpdateProduct() {
       ...form,
       title: response.data.data.title,
       price: response.data.data.price,
+      stock: response.data.data.stock,
+      description: response.data.data.description,
     });
     setProduct(response.data.data);
   });
@@ -66,6 +70,8 @@ export default function UpdateProduct() {
       }
       formData.set('title', form.title);
       formData.set('price', form.price);
+      formData.set('stock', form.stock);
+      formData.set('description', form.description);
 
       // Insert product data
       const response = await API.patch(
@@ -115,7 +121,7 @@ export default function UpdateProduct() {
                 />
                 <input className="descriptionProduct"
                  type="textarea"
-                 id="title" name="title"
+                 id="description" name="description"
                  placeholder="Product's Description"
                  onChange={ handleChange }
                  value={ form?.description }
