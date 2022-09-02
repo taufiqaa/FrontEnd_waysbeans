@@ -58,7 +58,7 @@ export default function Header() {
           { state.user.status === "customer" &&
           <div className="customerLogin">
             <img className="cartLogo" src={cartLogo}  alt="cart" onClick={()=>navigate("/cart")} />
-            {/* { (cart?.length >= 1) && <span>{cart?.length}</span> } */}
+            { (cart?.length >= 1) && <span>{cart?.length}</span> }
           </div>
            } 
          <img className="userPicture" src={photo} alt="user"

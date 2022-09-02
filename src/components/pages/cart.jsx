@@ -15,6 +15,9 @@ export default function Cart() {
 
   let navigate = useNavigate();
   const [state, dispatch] = useContext(UserContext)
+  const [qty, setQuantity] = useState(1);
+  const [amount, setAmount] = useState(0);
+  const [carts, setCarts] = useState([]);
 
 
   const [popUp] = React.useState(false);
@@ -34,6 +37,24 @@ export default function Cart() {
   let resultTotal = dataCarts?.reduce((addition, b) => {
     return addition + b.sub_amount;
   }, 0);
+
+  const handleChange = (item, d) => {
+    const ind = carts.indexOf(item);
+    const arr = carts;
+    arr[ind].amount += d;
+
+    if (arr[ind].amount === 0) arr[ind].amount = 1;
+    setCarts([...arr]);
+  };
+
+  const handlePrice =()=>{
+    let qty = 0;
+    cart.map((item)=>(qty += item.qty * item.price));
+    setAmount(qty)
+
+  }
+
+
 
     // payment condition
     const form = {
@@ -143,9 +164,11 @@ console.log(form)
                     </div>
                   </div>
 
-                  <div className="data-topping-cart">
-                    <div>
-                      <h6>counter</h6>
+                  <div className="data-quantity-cart">
+                    <div className="quantityButton">
+                    <button type = "button" onClick={() => handleChange(data, -1)}>-</button>
+                    <h5>{data?.qty}</h5>
+                    <button type = "button" onClick={() => handleChange(data, 1)}>+</button>
                     </div>
                     <div className="trash-cart">
                       <img src={bin} alt="bin" />
@@ -172,7 +195,7 @@ console.log(form)
                     <h6>Quantity</h6>
                   </div>
                   <div className="quantity-cart">
-                    <h6>4</h6>
+                   <h6>4</h6>
                   </div>
                 </div>
               </div>

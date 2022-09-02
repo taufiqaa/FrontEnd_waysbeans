@@ -52,14 +52,15 @@
       object-fit: cover;
       width: 3.25rem;
       margin-left: 3.5rem;
-      margin-right: 4.5rem;
-      border: 2px solid #BD0707;
+      margin-right: 5.5rem;
+      border: none;
       border-radius: 50%;
   }
   
   .cartLogo{
     width:2.5rem;
     height: 2.5rem;
+    color:#613D2B;
   }
   
   .LoginButton{
@@ -177,14 +178,20 @@
   
   /* Dropdown*/
   
-  .AdminUserSection{
+.AdminUserSection{
     display:flex;
   }
   
+.dropdownSection{
+  position: absolute;
+  z-index: 999;
+  top: 3.5rem;
+  right: 0.5rem;
+}
+
   .dropdown {
     position: fixed;
-    top: 6rem;
-    right: 5.6rem;
+    top: 0;
     padding-left: 0;
     list-style: none;
     box-shadow: 0 0 10px 5px #00000046;
@@ -193,6 +200,15 @@
     font-weight: 700;
   }
   
+.dropdownSection li{
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  padding-right: 2.5rem;
+  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
   .dropdown-triangle {
     position: absolute;
     top: -1rem;
@@ -499,13 +515,27 @@
     color:#613D2B;
   }
   
-  .data-topping-cart{
+  .data-quantity-cart{
     height: 2rem;
     width: 35.5rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
   
+.quantityButton{
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid navy;
+  width: 25rem;
+  height: 5rem;
+}
+
+.quantityButton button{
+height: 25px;
+width: 25px;
+}
+
   .data-topping-cart h6{
     font-size: 14px;
     color:#613D2B;

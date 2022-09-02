@@ -9,6 +9,7 @@
     "animate-presence": "^0.2.1",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
+    "bootstrap-icons": "^1.9.1",
     "framer-motion": "^7.0.0",
     "multer": "^1.4.5-lts.1",
     "react": "^18.2.0",
