@@ -95,7 +95,7 @@ export default function ProductsList() {
                     <th width="1%" className="text-center">
                       No
                     </th>
-                    <th width="50%">Image</th>
+                    <th>Image</th>
                     <th>Title</th>
                     <th>Stock</th>
                     <th>Price (Rp)</th>
@@ -121,7 +121,11 @@ export default function ProductsList() {
                       <td className="align-middle">{ data.title }</td>
                       <td className="align-middle">{ data.stock }</td>
                       <td className="align-middle">{ data.price }</td>
-                      <td className="align-middle">{ data.description }</td>
+                      <td className="align-middle"
+                      style={{
+                        overflow: 'auto',
+                        height: '100px',
+                      }}>{ data.description }</td>
                       <td className="align-middle">
                         <Button
                           onClick={ () => {

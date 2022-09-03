@@ -1,12 +1,24 @@
-
+import { useState,useEffect  } from "react";
 import Header from "../molecules/header";
 import waysbeansLogo from "../../assets/NavBarIcon.svg";
+import {API} from '../config/api'
 
 export default function Profile() {
 
-
-
+  const [transaction, setTransaction] = useState([])
+  const getTransaction = async()=>{
+    try{
+      const response = await API.get("/transactions")
+      setTransaction(response.data.data)
+    }catch(error){
+      console.error(error)
+    }
+  }
   
+  useEffect(()=>{
+    getTransaction()
+  })
+
   return(
   <>
     <Header />
@@ -43,8 +55,10 @@ export default function Profile() {
         <div className="transaction-title">
           <h6>My Transaction</h6>
         </div>
+        {transaction.map((data,index)=>(
         <div className="detail-transaction">
           <div className="left-container">
+            
             <div className="main-order">
               <div className="picture-menu">
                 <img
@@ -55,13 +69,13 @@ export default function Profile() {
               </div>
               <div className="data-order">
                 <div className="data-flavour">
-                  <h6>Arabica Coffee</h6>
+                  <h6>title</h6>
                 </div>
                 <div className="orderTime">
-                  <h6>Saturday, 01-September-2022</h6>
+                  <h6>{data.updated_at}</h6>
                 </div>
                 <div className="data-price">
-                  <h6>Price : Rp 33.000</h6>
+                  <h6>{data.user.name}</h6>
                 </div>
                 <div className="data-quantity">
                   <h6>Qty: 2</h6>
@@ -88,7 +102,7 @@ export default function Profile() {
             </div>
           </div>
         </div>
-
+        ))}
       </div>
     </div>
   </>

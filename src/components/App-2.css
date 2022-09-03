@@ -372,6 +372,8 @@
   .description-detail{
     width: 36rem; 
     height: 16rem;
+    overflow: auto;
+    border: 1px solid red;
   }
   
   .data-payment{
@@ -707,6 +709,7 @@ background: none;
     background-color: #F7DADA;
     border-radius: 10px;
     margin-bottom: 1rem;
+    border: 1px solid red;
   }
   
   .left-container{
