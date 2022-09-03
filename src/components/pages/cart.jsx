@@ -65,6 +65,8 @@ useEffect(()=>{
 
   console.log("qtyTotal" + qtyTotal)
 
+  console.log(carts);
+
    
 
     const handleDecrement = async(id, qty, sub_amount, price, stock, product_stock) =>{
@@ -79,6 +81,11 @@ useEffect(()=>{
       const updateQty = qty-1
       const updateTotal = sub_amount - price * updateQty
       const updateStock = stock - updateQty
+        
+        console.log("qty"+qty)
+        console.log("sub_amount"+sub_amount)
+        console.log("stock"+stock)
+        console.log("stock"+product_stock)
 
       const body = JSON.stringify({
         Qty : updateQty,
@@ -141,12 +148,9 @@ console.log(form)
     const idTransaction = response.data.data.id
 
     for (let i=0; i<carts.length; i++){
-      await API.patch(`/cart/${carts[i].id}`, {"transaction_id": idTransaction}, config )
-     }
-
-     for (let x=0; x<carts.length; x++){
-     await  API.patch(`/product-stock/${carts[x].product_id}`, {"stock" : carts[x].product_stock}, config)
-     }
+     await API.patch(`/cart/${carts[i].id}`, {"transaction_id": idTransaction}, config )
+       }
+  
 
 
     const snapToken = await API.get(`/midtrans/${idTransaction}`)
@@ -158,7 +162,10 @@ console.log(form)
     window.snap.pay(token, {
       onSuccess: function (result) {
         /* You may add your own implementation here */
-        
+
+         for (let x=0; x<carts.length; x++){
+        API.patch(`/product-stock/${carts[x].product_id}`, {"stock" : carts[x].product_stock}, config)
+         }
         console.log(result);
         navigate("/profile");
       },
@@ -232,9 +239,9 @@ console.log(carts)
                   </div>
                   <div className="data-quantity-cart">
                     <div className="quantityButton">
-                    <button onClick={() => handleDecrement(data.id, data.qty, data.sub_amount, data.product.price)}>-</button>
+                    <button onClick={() => handleDecrement(data.id, data.qty, data.sub_amount, data.product.price,data.product.stock ,data.product_stock)}>-</button>
                     <div className="quantityProduct"><h6>{data?.qty}</h6></div>
-                    <button onClick={(id,qty)=> handleIncrement(data.id, data.qty, data.sub_amount, data.product.price)}>+</button>
+                    <button onClick={(id,qty)=> handleIncrement(data.id, data.qty, data.sub_amount, data.product.price,data.product.stock,data.product_stock)}>+</button>
                     </div>
                     <div className="trash-cart">
                       <img src={bin} alt="bin" />
