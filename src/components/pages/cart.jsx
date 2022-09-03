@@ -15,57 +15,112 @@ export default function Cart() {
 
   let navigate = useNavigate();
   const [state, dispatch] = useContext(UserContext)
-  const [qty, setQuantity] = useState(1);
-  const [amount, setAmount] = useState(0);
   const [carts, setCarts] = useState([]);
 
 
-  const [popUp] = React.useState(false);
+  // const [popUp] = React.useState(false);
   
-  let { data: cart, refetch } = useQuery("cartsCache", async () => {
-    const response = await API.get("/carts");
-    return response.data.data;
-  });
+
+const getCart = async ()  =>{
+  try{
+      const response = await API.get("/carts");
+      const cartfilter = response.data.data.filter((item)=>{
+        return item.transaction_id ===null
+      }) 
+      setCarts(response.data.data);
+}catch(error){
+  console.log(error);
+}
+};
+
+console.log(carts)
+
+useEffect(()=>{
+  getCart()
+}, [])
+  // let { data: cart, refetch } = useQuery("cartsCache", async () => {
+  //   const response = await API.get("/carts");
+  //   return response.data.data;
+  // });
 
 
-  const dataCarts = cart?.filter((item)=>{
-    return item.transaction_id === null
-  })
+  // const dataCarts = cart?.filter((item)=>{
+  //   return item.transaction_id === null
+  // })
 
-  console.log(dataCarts)
+  // console.log(dataCarts)
+
+
  
-  let resultTotal = dataCarts?.reduce((addition, b) => {
+  let resultTotal = carts?.reduce((addition, b) => {
     return addition + b.sub_amount;
   }, 0);
 
-  const handleChange = (item, d) => {
-    const ind = carts.indexOf(item);
-    const arr = carts;
-    arr[ind].amount += d;
-
-    if (arr[ind].amount === 0) arr[ind].amount = 1;
-    setCarts([...arr]);
-  };
-
-  const handlePrice =()=>{
-    let qty = 0;
-    cart.map((item)=>(qty += item.qty * item.price));
-    setAmount(qty)
-
-  }
+  console.log("resultTotal" + resultTotal);
 
 
+  let qtyTotal = carts?.reduce((addition, b) => {
+    return addition + b.qty;
+  }, 0);
 
-    // payment condition
-    const form = {
-      amount: resultTotal,
-    };
+  console.log("qtyTotal" + qtyTotal)
 
+   
+
+    const handleDecrement = async(id, qty, sub_amount, price) =>{
+      const config ={
+        headers: {
+          "Content-type" : "application/json",
+        },
+      }
+      if (qty===0){
+        return;
+      }
+      const updateQty = qty-1
+      const updateTotal = sub_amount - price * updateQty
+      console.log(sub_amount);
+      console.log(updateTotal);
+
+      const body = JSON.stringify({
+        Qty : updateQty,
+        sub_amount : updateTotal * updateQty,
+      })
+        await API.patch(`/cart-qty/${id}`, body, config)
+        const response = await API.get("/carts");
+        setCarts(response.data.data);
+    }
+ 
+    console.log(carts)
+
+    const handleIncrement = async(id, qty, sub_amount, price) =>{
+      const config ={
+        headers: {
+          "Content-type" : "application/json",
+        },
+      }
+      console.log("increment" + id);
+      console.log("increment" + qty);
+      const updateQty = qty + 1
+      const updateTotal = price * updateQty
+        const body = JSON.stringify({
+        Qty : updateQty,
+       sub_amount : updateTotal
+      })
+        await API.patch(`/cart-qty/${id}`, body, config)
+        const response = await API.get("/carts");
+        setCarts(response.data.data);
+    }
   // let handleDelete = async (id) => {
   //   console.log(id);
   //   await API.delete(`/cart/${id}`);
   //   refetch();
   // };
+
+
+   // payment condition
+   const form = {
+    amount: resultTotal,
+  };
 
 console.log(form)
 
@@ -77,18 +132,22 @@ console.log(form)
       },
     };
     // Insert transaction data
-    const body = JSON.stringify(form);
+    const body = JSON.stringify({
+      amount: resultTotal,
+    });
 
     const response = await API.post("/transaction_id", body, config);
     const idTransaction = response.data.data.id
 
-    for (let i=0; i<dataCarts.length; i++){
-      await API.patch(`/cart/${dataCarts[i].id}`, {"transaction_id": idTransaction}, config )
+    for (let i=0; i<carts.length; i++){
+      await API.patch(`/cart/${carts[i].id}`, {"transaction_id": idTransaction}, config )
     }
 
     const snapToken = await API.get(`/midtrans/${idTransaction}`)
 
     const token = snapToken.data.data.token;
+
+    console.log("cart"+carts)
 
     window.snap.pay(token, {
       onSuccess: function (result) {
@@ -133,10 +192,11 @@ console.log(form)
     };
   }, []);
 
+console.log(carts)
 
   return (
     <>
-      <Header addCart={cart?.length} />
+      <Header addCart={carts?.length} />
       <div className="cart-section">
         <div className="cart-title">
           <h6>My Cart</h6>
@@ -145,7 +205,7 @@ console.log(form)
           <div className="left-cart-container">
             <h6>Review Your Order</h6>
             <div className="line-cart">
-            {cart.map((data,index)=> (
+            {carts.map((data,index)=> (
               <div className="main-cart">
                 <div className="picture-menu-cart">
                   <img
@@ -160,15 +220,14 @@ console.log(form)
                       <h6>{data?.product?.title}</h6>
                     </div>
                     <div className="data-price-cart">
-                      <h6>Rp {data?.sub_amount}</h6>
+                      <h6>Rp {data?.product?.price * data?.qty}</h6>
                     </div>
                   </div>
-
                   <div className="data-quantity-cart">
                     <div className="quantityButton">
-                    <button type = "button" onClick={() => handleChange(data, -1)}>-</button>
-                    <h5>{data?.qty}</h5>
-                    <button type = "button" onClick={() => handleChange(data, 1)}>+</button>
+                    <button onClick={() => handleDecrement(data.id, data.qty, data.sub_amount, data.product.price)}>-</button>
+                    <div className="quantityProduct"><h6>{data?.qty}</h6></div>
+                    <button onClick={(id,qty)=> handleIncrement(data.id, data.qty, data.sub_amount, data.product.price)}>+</button>
                     </div>
                     <div className="trash-cart">
                       <img src={bin} alt="bin" />
@@ -187,15 +246,15 @@ console.log(form)
                     <h6>Sub Total</h6>
                   </div>
                   <div className="subTotal-payment-cart">
-                    <h6>Rp 27000 </h6>
+                    <h6>Rp {resultTotal} </h6>
                   </div>
                 </div>
                 <div className="quantity-title-cart">
                   <div>
-                    <h6>Quantity</h6>
+                    <h6>Qty</h6>
                   </div>
                   <div className="quantity-cart">
-                   <h6>4</h6>
+                   <h6>{qtyTotal}</h6>
                   </div>
                 </div>
               </div>

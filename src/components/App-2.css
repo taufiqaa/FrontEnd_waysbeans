@@ -268,27 +268,30 @@
   
   /*Order-List*/
   
+.coffeeSection{
+  padding-bottom: 1rem;
+}
+
   .drink-list{
     width: 65rem;
     margin-left: 8rem;
     margin-top: 2rem;
     height: 35rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     height: auto;
   }
-  .list-coffee{
+  /* .list-coffee{
     width: 14rem;
     height: 20rem;
     margin-right: 3px;
-    margin-bottom: 2rem;
-  }
+    margin-bottom: 0.2rem;
+  } */
   
-  .coffeImage{
+  /* .coffeImage{
     width:14rem;
     height: 14rem;
-  }
+  } */
   
   #mainImage{
     width: 14rem;
@@ -524,29 +527,36 @@
   }
   
 .quantityButton{
+  display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
-  border: 1px solid navy;
-  width: 25rem;
-  height: 5rem;
+  width: 5rem;
+  height: 2rem;
 }
 
 .quantityButton button{
 height: 25px;
 width: 25px;
+border: none;
+color:#613D2B;
+font-weight: bold;
+background: none;
 }
 
-  .data-topping-cart h6{
-    font-size: 14px;
-    color:#613D2B;
-  }
-  
-  .data-topping-cart i{
-    font-style: normal;
-    font-size: 14px;
-    color:#613D2B;
-  }
-  
+.quantityProduct {
+  background-color: #DBB699;
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.quantityProduct h6{
+  margin-left: 5px;
+  margin-bottom: 5px; 
+}
+
   .trash-cart{
     color:#613D2B;
   }
@@ -565,7 +575,6 @@ width: 25px;
     width: 1080;
     display:flex;
     flex-wrap: nowrap;
-    /* margin-bottom: 480px; */
   }
   /* My Profile */
   .profile-container{
@@ -697,6 +706,7 @@ width: 25px;
     flex-wrap: wrap;
     background-color: #F7DADA;
     border-radius: 10px;
+    margin-bottom: 1rem;
   }
   
   .left-container{

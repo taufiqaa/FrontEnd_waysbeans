@@ -19,7 +19,7 @@ export default function CoffeeList() {
   };
 
   return (
-    <section>
+    <section className="coffeeSection">
       <div className="drink-list">
         {products?.map((data, index) => (
           <div className="list-coffee">
