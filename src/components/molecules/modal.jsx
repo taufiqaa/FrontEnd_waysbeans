@@ -114,9 +114,11 @@ export function Register({modalRegister, setModalRegister, switchModal}) {
         name: '',
         email: '',
         password: '',
+        address: '',
+        post_code:'',
     });
 
-    const { name, email, password } = form;
+    const { name, email, password, address, post_code } = form;
 
     const handleChange = (e) => {
         setForm({
@@ -188,6 +190,20 @@ export function Register({modalRegister, setModalRegister, switchModal}) {
                     id="name" name="name"
                     placeholder="Full Name"
                     value={name}
+                    onChange={ handleChange }
+                    />
+                    <input className="passwordModal"
+                    type="text"
+                    id="address" name="address"
+                    placeholder="Address"
+                    value={address}
+                    onChange={ handleChange }
+                    />
+                    <input className="emailModal"
+                    type="text"
+                    id="post_code" name="post_code"
+                    placeholder="Post Code"
+                    value={post_code}
                     onChange={ handleChange }
                     />
                     <button className="submitModal"

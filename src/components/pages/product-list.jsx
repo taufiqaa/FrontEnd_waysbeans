@@ -95,7 +95,7 @@ export default function ProductsList() {
                     <th width="1%" className="text-center">
                       No
                     </th>
-                    <th>Image</th>
+                    <th width="50%">Image</th>
                     <th>Title</th>
                     <th>Stock</th>
                     <th>Price (Rp)</th>
