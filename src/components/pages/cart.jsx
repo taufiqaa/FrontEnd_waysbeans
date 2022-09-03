@@ -67,7 +67,7 @@ useEffect(()=>{
 
    
 
-    const handleDecrement = async(id, qty, sub_amount, price) =>{
+    const handleDecrement = async(id, qty, sub_amount, price, stock, product_stock) =>{
       const config ={
         headers: {
           "Content-type" : "application/json",
@@ -78,12 +78,12 @@ useEffect(()=>{
       }
       const updateQty = qty-1
       const updateTotal = sub_amount - price * updateQty
-      console.log(sub_amount);
-      console.log(updateTotal);
+      const updateStock = stock - updateQty
 
       const body = JSON.stringify({
         Qty : updateQty,
         sub_amount : updateTotal * updateQty,
+        product_stock :updateStock
       })
         await API.patch(`/cart-qty/${id}`, body, config)
         const response = await API.get("/carts");
@@ -92,19 +92,20 @@ useEffect(()=>{
  
     console.log(carts)
 
-    const handleIncrement = async(id, qty, sub_amount, price) =>{
+    const handleIncrement = async(id, qty, sub_amount, price, stock, product_stock) =>{
       const config ={
         headers: {
           "Content-type" : "application/json",
         },
       }
-      console.log("increment" + id);
-      console.log("increment" + qty);
+
       const updateQty = qty + 1
       const updateTotal = price * updateQty
+      const updateStock = stock - updateQty
         const body = JSON.stringify({
         Qty : updateQty,
-       sub_amount : updateTotal
+       sub_amount : updateTotal,
+          product_stock: updateStock
       })
         await API.patch(`/cart-qty/${id}`, body, config)
         const response = await API.get("/carts");
@@ -141,7 +142,12 @@ console.log(form)
 
     for (let i=0; i<carts.length; i++){
       await API.patch(`/cart/${carts[i].id}`, {"transaction_id": idTransaction}, config )
-    }
+     }
+
+     for (let x=0; x<carts.length; x++){
+     await  API.patch(`/product-stock/${carts[x].product_id}`, {"stock" : carts[x].product_stock}, config)
+     }
+
 
     const snapToken = await API.get(`/midtrans/${idTransaction}`)
 
@@ -152,6 +158,7 @@ console.log(form)
     window.snap.pay(token, {
       onSuccess: function (result) {
         /* You may add your own implementation here */
+        
         console.log(result);
         navigate("/profile");
       },
