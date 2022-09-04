@@ -65,10 +65,10 @@ export function Login({modalLogin, setModalLogin, switchModal}) {
    return (
        <>
             { modalLogin &&
-            <section className="modal fixed z-index-3 w100 h100 flex jc-center ai-center"
+            <section className="modalSection"
             onClick={ () => setModalLogin(false) }
             >
-                <form className="py2 px1-5 flex-col bg-white br10"
+                <form className="modalForm"
                 onClick={ (e) => e.stopPropagation() }
                 onSubmit={ (e) => handleSubmit.mutate(e) }
                 >
@@ -162,10 +162,10 @@ export function Register({modalRegister, setModalRegister, switchModal}) {
     return (
       <>
             { modalRegister &&
-            <section className="modal fixed z-index-3 w100 h100 flex jc-center ai-center"
+            <section className="modalSection"
             onClick={ () => setModalRegister(false) }
             >
-                <form className="py2 px1-5 flex-col bg-white br10"
+                <form className="modalForm"
                 onClick={ (e) => e.stopPropagation() }
                 onSubmit={ (e) => handleSubmit.mutate(e) }
                 >

@@ -74,20 +74,12 @@ export default function ProductsList() {
       <Container className="py-5">
         <Row>
           <Col xs="6">
-            <div className="text-header-category mb-4">List Product</div>
-          </Col>
-          <Col xs="6" className="text-end">
-            <Button
-              onClick={ addProduct }
-              className="btn-dark"
-              style={ { width: '100px' } }
-            >
-              Add
-            </Button>
+            <div className="text-header-category mb-4"
+            style={{color:`#613D2B`}}><h2>List Product</h2></div>
           </Col>
           <Col xs="12">
             { products?.length !== 0 ? (
-              <Table hover size="lg" variant="dark">
+              <Table size="lg">
                 <thead>
                   <tr style={ {
                             height: '80px',
@@ -127,16 +119,7 @@ export default function ProductsList() {
                         height: '100px',
                       }}>{ data.description }</td>
                       <td className="align-middle">
-                        <Button
-                          onClick={ () => {
-                            handleUpdate(data.id);
-                          } }
-                          className="btn-sm btn-success me-2"
-                          style={{width: '100px',}}
-                        >
-                          Edit
-                        </Button>
-                        <Button
+                      <Button
                           onClick={ () => {
                             handleDelete(data.id);
                           } }
@@ -145,6 +128,16 @@ export default function ProductsList() {
                         >
                           Delete
                         </Button>
+                        <Button
+                          onClick={ () => {
+                            handleUpdate(data.id);
+                          } }
+                          className="btn-sm btn-success me-2"
+                          style={{width: '100px',}}
+                        >
+                          Update
+                        </Button>
+                        
                       </td>
                     </tr>
                   )) }

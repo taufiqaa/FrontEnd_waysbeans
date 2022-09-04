@@ -35,7 +35,7 @@ export default function Dropdown({adminDropdown, userDropdown, logOut}) {
         
             {userDropdown &&
             <section className="dropdownSection">
-                <ul className="dropdown bg-white br10 fw700 cursor-pointer">
+                <ul className="dropdown">
                     <img className="dropdown-triangle" src={triangle} alt="white-triangle" />
                     <li onClick={ () => navigate('/profile') }
                     >

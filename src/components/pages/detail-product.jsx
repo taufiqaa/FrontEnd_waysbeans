@@ -71,7 +71,7 @@ function DetailProduct() {
               <h6>{product?.title}</h6>
             </div>
             <div className="price-detail">
-              <h6>Stock:{product?.stock}</h6>
+              <h6>Stock: {product?.stock}</h6>
             </div>
           </div>
           <div className="description-detail">
@@ -86,7 +86,8 @@ function DetailProduct() {
                 <h6>Rp {product?.price}</h6>
               </div>
             </div>
-            <Button variant="danger" className="add-cart" onClick={(e) => handleSubmit.mutate(e)}>
+            <Button variant="danger" className="add-cart"
+            style={{backgroundColor:`#613D2B`, border: 'none'}} onClick={(e) => handleSubmit.mutate(e)}>
               Add Cart
             </Button>
           </div>

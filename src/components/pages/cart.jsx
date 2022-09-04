@@ -284,7 +284,9 @@ console.log(carts)
                   <h6>Rp {resultTotal}</h6>
                 </div>
               </div>
-              <Button variant="danger" type="submit" className="add-cart"
+              <Button variant="secondary" type="submit" className="add-cart"
+              style={{backgroundColor:`
+              #613D2B`}}
               onClick={(e) => handleSubmit.mutate(e)}>
                 Pay
               </Button>

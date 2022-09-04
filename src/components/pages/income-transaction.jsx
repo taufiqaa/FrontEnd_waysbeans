@@ -61,7 +61,7 @@ export default function IncomeTransaction(){
         <Header />
         <section className="table">
         <h1>Income Transaction</h1>
-        <Table striped bordered hover size="sm">
+        <Table bordered hover size="sm">
       <thead>
         <tr>
           <th>No</th>
