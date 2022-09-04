@@ -19,6 +19,7 @@
   
   .NavbarLogo{
     margin-left: 5rem;
+    cursor:pointer;
   }
   
   .loginCondition{
@@ -50,12 +51,14 @@
       margin-right: 5.5rem;
       border: none;
       border-radius: 50%;
+      cursor:pointer;
   }
   
   .cartLogo{
     width:2.5rem;
     height: 2.5rem;
     color:#613D2B;
+    cursor:pointer;
   }
   
   .LoginButton{
@@ -66,6 +69,7 @@
     color: #613D2B;
     width:100px;
     margin-right: 1rem;
+    cursor:pointer;
   }
   
   .RegisterButton{
@@ -75,6 +79,7 @@
     color:white;
     width:100px;
     margin-right: 5rem;
+    cursor:pointer;
   }
   
   
@@ -210,6 +215,7 @@
   padding-left: 1.5rem;
   display: flex;
   align-items: center;
+  cursor:pointer;
 }
 
   .dropdown-triangle {
@@ -276,18 +282,20 @@
 }
 
   .drink-list{
-    width: 65rem;
+    width: 68rem;
     margin-left: 8rem;
     margin-top: 2rem;
     height: 35rem;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     height: auto;
+    margin-right: 1rem;
   }
 
   #mainImage{
     width: 14rem;
     height:14rem;
+    cursor:pointer;
   }
   
   .CoffeDetail{
@@ -296,6 +304,7 @@
     height: 6rem;
     padding-left: 15px;
     padding-top: 10px;
+    cursor:pointer;
   }
   
   .CoffeeTitle h6{
@@ -948,8 +957,12 @@ background: none;
   }
   
   .clip{
+    display: inline;
     width: 2rem;
-    height: 8rem;
+    height: 3.5rem;
+    justify-content: end;
+    cursor:pointer;
+    margin-right: 0.5rem;
   }
   
   .buttonDiv{

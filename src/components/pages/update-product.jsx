@@ -90,7 +90,7 @@ export default function UpdateProduct() {
   return (
     <>
     <Header />
-    <section className="product-section">
+    <section className="product-section space-navbar">
             <form
             onSubmit={ (e) => handleSubmit.mutate(e) }
             >

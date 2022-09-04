@@ -36,7 +36,7 @@ export default function Profile() {
           <div className="picture-profile">
             <img
               className="picture-user"
-              src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
+              src="https://images.unsplash.com/photo-1628563694622-5a76957fd09c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW5zdGFncmFtJTIwcHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
               alt=""
             />
           </div>
@@ -84,7 +84,7 @@ export default function Profile() {
                   <h6>{item?.product?.price}</h6>
                 </div>
                 <div className="data-quantity">
-                  <h6>Qty:{item?.qty}</h6>
+                  <h6>Qty : {item?.qty}</h6>
                 </div>
                 <div className="subTotal">
               <h6>Sub Total : {item?.sub_amount}</h6>
