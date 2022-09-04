@@ -4,7 +4,7 @@ import waysbeansLogo from "../../assets/NavBarIcon.svg";
 import {API} from '../config/api'
 import { UserContext } from "../context/userContext";
 import { useContext } from "react";
-
+import dateFormat from 'dateformat'
 
 export default function Profile() {
 
@@ -15,7 +15,7 @@ export default function Profile() {
   useEffect(()=>{
   const getTransaction = async()=>{
     try{
-      const response = await API.get("/transactions")
+      const response = await API.get("/transactionId")
       setTransaction(response.data.data)
     }catch(error){
       console.error(error)
@@ -27,7 +27,7 @@ export default function Profile() {
   return(
   <>
     <Header />
-    <div className="transaction-section ">
+    <div className="transaction-section space-navbar">
       <div className="profile-container">
         <div className="profile-title">
           <h6>My Profile</h6>
@@ -62,8 +62,9 @@ export default function Profile() {
         </div>
         {transaction.map((data,index)=>(
         <div className="detail-transaction">
-          <div className="left-container">
             {data.cart.map((item, index)=>(
+          <div className="box-order">
+          <div className="left-container">
             <div className="main-order">
               <div className="picture-menu">
                 <img
@@ -77,7 +78,7 @@ export default function Profile() {
                   <h6>{item?.product?.title}</h6>
                 </div>
                 <div className="orderTime">
-                  <h6>{item?.updated_at}</h6>
+                  <h6>{dateFormat(item?.updated_at, 'dddd, ')}{dateFormat(item?.updated_at, 'd mmmm yyyy')}</h6>
                 </div>
                 <div className="data-price">
                   <h6>{item?.product?.price}</h6>
@@ -90,7 +91,6 @@ export default function Profile() {
               </div>
               </div>
             </div>
-            ))}
           </div>
           <div className="right-container">
             <div className="logo-transaction">
@@ -101,12 +101,14 @@ export default function Profile() {
                 className="qr-code"
                 src="https://i.stack.imgur.com/XHWnX.png"
                 alt=""
-              />
+                />
             </div>
             <div className="status-order">
               <h6>{data.status}</h6>
             </div>
           </div>
+        </div>
+                ))}
         </div>
         ))}
       </div>

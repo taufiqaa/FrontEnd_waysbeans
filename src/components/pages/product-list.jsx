@@ -31,9 +31,7 @@ export default function ProductsList() {
     return response.data.data;
   });
 
-  const addProduct = () => {
-    navigate('/add-product');
-  };
+
 
   const handleUpdate = (id) => {
     navigate('/update-product/' + id);

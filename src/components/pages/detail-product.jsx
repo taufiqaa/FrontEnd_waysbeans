@@ -39,12 +39,13 @@ function DetailProduct() {
       });
       console.log("sub amount " + sub_amount);
       console.log("a",body)
-
+     
       const response = await API.post("/cart", body, config);    
       console.log(response);
     } catch (error) {
       console.log(error);
     }
+    navigate('/')
   });
 
   useEffect(() => {

@@ -213,7 +213,7 @@ console.log(carts)
   return (
     <>
       <Header addCart={carts?.length} />
-      <div className="cart-section">
+      <div className="cart-section space-navbar">
         <div className="cart-title">
           <h6>My Cart</h6>
         </div>

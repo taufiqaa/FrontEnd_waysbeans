@@ -9,11 +9,11 @@ export default function DeleteData({ show, handleClose, setConfirmDelete }) {
     return (
         <Modal show={show} onHide={handleClose} centered>
             <Modal.Body className="text-dark">
-                <div style={{fontSize: '20px', fontWeight: '900'}}>
-                    Delete Data
+                <div style={{fontSize: '18px', fontWeight: '500'}} className="mt-2">
+                    Are you sure you want to delete this coffee's product?
                 </div>
-                <div style={{fontSize: '16px', fontWeight: '500'}} className="mt-2">
-                    Are you sure you want to delete this product?
+                <div style={{fontSize: '13px', fontWeight: '500'}} className="mt-2">
+                    This product will be deleted immediately. You can't undo this action.
                 </div>
                 <div className="text-end mt-5">
                     <Button onClick={handleDelete} size="sm" className="btn-success me-2" style={{width: '135px'}}>Yes</Button>

@@ -1,5 +1,4 @@
 import React from "react"
-import './components/App-1.css'
 import './components/App-2.css'
 import { Route, Routes, useNavigate } from "react-router-dom"
 import Home from"./components/pages/home"

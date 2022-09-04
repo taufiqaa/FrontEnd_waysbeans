@@ -1,6 +1,6 @@
 
 .space-navbar{
-    padding-top: 10rem;
+    padding-top: 4rem;
   }
   
   nav{
@@ -32,9 +32,14 @@
   
   .customerLogin span {
     position: absolute;
-    top: -0.3rem;
+    top: 0.2rem;
     right: -0.5rem;
     text-align: center;
+    color: white;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: #BD0707;
   }
   
   .userPicture{
@@ -77,9 +82,6 @@
   
   /*Login*/
   
-
-
-
   .alertModal{
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -562,10 +564,11 @@ background: none;
   /*Profile*/
   
   .transaction-section{
-    height: 315px;
+    height: 600px;
     width: 1080;
     display:flex;
     flex-wrap: nowrap;
+    margin-bottom: 7rem;
   }
   /* My Profile */
   .profile-container{
@@ -589,7 +592,7 @@ background: none;
     font-weight: 900;
     font-size: 18px;
     line-height: 33px;
-    color: #BD0707;
+    color:#613D2B;
   }
   
   .detail-profile{
@@ -691,18 +694,23 @@ background: none;
   }
   
   .detail-transaction{
-    width: 520px;
-    height: 12rem;
+    width: 550px;
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
     background-color: #F7DADA;
     border-radius: 10px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
   }
   
+.box-order{
+  display: flex;
+}
+
   .left-container{
     width: 370px;
-    height: 250px;
+    height: 50px;
     display: flex;
     flex-wrap: wrap;
     margin-left: 28px;
@@ -714,7 +722,7 @@ background: none;
     height: 125px;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 5px;
+
   }
   
   .picture-menu{
@@ -785,7 +793,7 @@ background: none;
   }
   
   .right-container{
-    height: 200px;
+    height: 150px;
     width: 80px;
     margin-top: 14px;
   }
