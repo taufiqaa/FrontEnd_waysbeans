@@ -285,9 +285,9 @@
     width: 68rem;
     margin-left: 8rem;
     margin-top: 2rem;
-    height: 35rem;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    row-gap: 1.5rem;
     height: auto;
     margin-right: 1rem;
   }

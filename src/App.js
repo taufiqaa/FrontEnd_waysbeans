@@ -1,5 +1,5 @@
 import React from "react"
-import './components/App-2.css'
+import './components/App.css'
 import { Route, Routes, useNavigate } from "react-router-dom"
 import Home from"./components/pages/home"
 import DetailProduct from"./components/pages/detail-product"

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './components/App-2.css'
+import './components/App.css'
 import { UserContextProvider } from './components/context/userContext'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
