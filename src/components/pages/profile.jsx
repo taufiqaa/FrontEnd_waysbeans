@@ -2,11 +2,17 @@ import { useState,useEffect  } from "react";
 import Header from "../molecules/header";
 import waysbeansLogo from "../../assets/NavBarIcon.svg";
 import {API} from '../config/api'
+import { UserContext } from "../context/userContext";
+import { useContext } from "react";
 // import dateFormat from "../../dateFormat";
 
 export default function Profile() {
 
+  const [state] = useContext(UserContext)
+
+
   const [transaction, setTransaction] = useState([])
+  useEffect(()=>{
   const getTransaction = async()=>{
     try{
       const response = await API.get("/transactions")
@@ -14,11 +20,9 @@ export default function Profile() {
     }catch(error){
       console.error(error)
     }
-  }
-  
-  useEffect(()=>{
-    getTransaction()
-  })
+  };  
+     getTransaction()
+  }, [setTransaction])
 
   return(
   <>
@@ -41,13 +45,13 @@ export default function Profile() {
               <h6>Full Name</h6>
             </div>
             <div className="userName">
-              <h6>Ardiansyah</h6>
+              <h6>{state.user.name}</h6>
             </div>
             <div className="identity-email">
               <h6>Email</h6>
             </div>
             <div className="userEmail">
-              <h6>@gmail.com</h6>
+              <h6>{state.user.email}</h6>
             </div>
           </div>
         </div>
@@ -59,33 +63,34 @@ export default function Profile() {
         {transaction.map((data,index)=>(
         <div className="detail-transaction">
           <div className="left-container">
-            
+            {data.cart.map((item, index)=>(
             <div className="main-order">
               <div className="picture-menu">
                 <img
                   className="picture-menuPurchased"
-                  src="https://www.pngitem.com/pimgs/m/129-1296068_caramel-macchiato-vanilla-bean-macchiato-starbucks-hd-png.png"
+                  src={item?.product?.image}
                   alt=""
                 />
               </div>
               <div className="data-order">
                 <div className="data-flavour">
-                  <h6>title</h6>
+                  <h6>{item?.product?.title}</h6>
                 </div>
                 <div className="orderTime">
-                  <h6>{data.updated_at}</h6>
+                  <h6>{item?.updated_at}</h6>
                 </div>
                 <div className="data-price">
-                  <h6>{data.user.name}</h6>
+                  <h6>{item?.product?.price}</h6>
                 </div>
                 <div className="data-quantity">
-                  <h6>Qty: 2</h6>
+                  <h6>Qty:{item?.qty}</h6>
                 </div>
                 <div className="subTotal">
-              <h6>Sub Total : Rp 69.000</h6>
+              <h6>Sub Total : {item?.sub_amount}</h6>
               </div>
               </div>
             </div>
+            ))}
           </div>
           <div className="right-container">
             <div className="logo-transaction">
@@ -99,7 +104,7 @@ export default function Profile() {
               />
             </div>
             <div className="status-order">
-              <h6>On the way</h6>
+              <h6>{data.status}</h6>
             </div>
           </div>
         </div>

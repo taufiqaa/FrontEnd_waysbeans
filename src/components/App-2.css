@@ -877,6 +877,10 @@ background: none;
     background-color: #E5E5E5;
   }
   
+.productIncome{
+  display: inline;
+  font-size: 16px;
+}
   
   /*Add Product*/
   

@@ -79,7 +79,10 @@ export default function IncomeTransaction(){
           <td>{data.user.name}</td>
           <td>{data.user.address}</td>
           <td>{data.user.post_code}</td>
-          <td>Product</td>
+          <td>{data.cart.map((data,index)=>(
+            <h6 className="productIncome" key={index}>
+            {data.product.title}, </h6>
+          ))}</td>
           <td>{data.status}</td>
         </tr>
         ))}

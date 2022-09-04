@@ -114,6 +114,8 @@ useEffect(()=>{
        sub_amount : updateTotal,
           product_stock: updateStock
       })
+      console.log(product_stock)  
+   
         await API.patch(`/cart-qty/${id}`, body, config)
         const response = await API.get("/carts");
         setCarts(response.data.data);
@@ -162,10 +164,10 @@ console.log(form)
     window.snap.pay(token, {
       onSuccess: function (result) {
         /* You may add your own implementation here */
-
-         for (let x=0; x<carts.length; x++){
-        API.patch(`/product-stock/${carts[x].product_id}`, {"stock" : carts[x].product_stock}, config)
-         }
+        for (let x=0; x<carts.length; x++){
+        API.patch(`/product-stock/${carts[x].product_id}`, {"stock" : carts[x].product_stock}, config) 
+      }
+        
         console.log(result);
         navigate("/profile");
       },
