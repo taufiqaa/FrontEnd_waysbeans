@@ -2,50 +2,38 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { useQuery, useMutation } from 'react-query';
-import Header from "../molecules/header";
-import DeleteData from "../molecules/delete-data";
-import EmptyBox from "../../assets/emptybox.png";
+import Header from "../components/header";
+import DeleteData from "../components/delete-data";
+import EmptyBox from "../assets/emptybox.png";
 import { API } from '../config/api';
 
 
 export default function ProductsList() {
   let navigate = useNavigate();
-
   const title = 'Products List';
   document.title = 'WaysBeans | ' + title;
 
-  // Create variabel for id product and confirm delete data with useState here ...
   const [idDelete, setIdDelete] = useState(null);
   const [confirmDelete, setConfirmDelete] = useState(null);
-
-  // console.log(idDelete,confirmDelete);
-
-  // Create init useState & function for handle show-hide modal confirm here ...
-  // Modal Confirm delete data
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
 
   let { data: products, refetch } = useQuery('productsCache', async () => {
     const response = await API.get('/products');
     return response.data.data;
   });
 
-
-
   const handleUpdate = (id) => {
     navigate('/update-product/' + id);
   };
 
-  // Create function handle get id product & show modal confirm delete data here ...
-  // For get id product & show modal confirm delete data
   const handleDelete = (id) => {
     setIdDelete(id);
     handleShow();
   };
 
-  // Create function for handle delete product here ...
-  // If confirm is true, execute delete data
   const deleteById = useMutation(async (id) => {
     try {
       await API.delete(`/product/${id}`);
@@ -55,12 +43,10 @@ export default function ProductsList() {
     }
   });
 
-  // Call function for handle close modal and execute delete data with useEffect here ...
+ 
   useEffect(() => {
     if (confirmDelete) {
-      // Close modal confirm delete data
       handleClose();
-      // execute delete data by id function
       deleteById.mutate(idDelete);
       setConfirmDelete(null);
     }
@@ -108,7 +94,12 @@ export default function ProductsList() {
                           alt={ data.title }
                         />
                       </td>
-                      <td className="align-middle">{ data.title }</td>
+                      <td className="align-middle"
+                       style={{
+                        overflow: 'auto',
+                        height: '100px',
+                        width:'30px',
+                      }}>{ data.title }</td>
                       <td className="align-middle">{ data.stock }</td>
                       <td className="align-middle">{ data.price }</td>
                       <td className="align-middle"
@@ -121,8 +112,11 @@ export default function ProductsList() {
                           onClick={ () => {
                             handleDelete(data.id);
                           } }
-                          className="btn-sm btn-danger"
-                          style={ { width: '100px' } }
+                          className="btn-sm btn-danger mr-2"
+                          style={ { width: '100px',
+                          marginRight: '1rem',
+                          marginBottom: '0.5rem'
+                         } }
                         >
                           Delete
                         </Button>
@@ -149,7 +143,7 @@ export default function ProductsList() {
                   style={ { width: '10%' } }
                   alt="empty"
                 />
-                <div className="mt-3">No data product</div>
+                <div className="mt-3">No product data available</div>
               </div>
             ) }
           </Col>

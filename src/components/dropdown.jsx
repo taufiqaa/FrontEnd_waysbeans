@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import out from "../../assets/logout.svg"
-import profile from "../../assets/user.svg"
-import product from "../../assets/coffee.svg"
-import triangle from "../../assets/triangle.svg"
+import out from "../assets/logout.svg"
+import profile from "../assets/user.svg"
+import product from "../assets/coffee.svg"
+import triangle from "../assets/triangle.svg"
 
 export default function Dropdown({adminDropdown, userDropdown, logOut}) {
 

@@ -1,6 +1,6 @@
 import React from "react"
-import Header from "../molecules/header"
-import clip from "../../assets/clip.svg"
+import Header from "../components/header"
+import clip from "../assets/clip.svg"
 import { useState } from 'react';
 import { API } from '../config/api';
 import { useNavigate } from 'react-router';
@@ -11,7 +11,7 @@ export default function AddProduct() {
     const navigate = useNavigate()
     const [popUp, setPopUp] = React.useState(false);
     const [photoProduct, setPhotoProduct] = React.useState(<p>Photo Product</p>)
-    const [preview, setPreview] = useState(null); //For image preview
+    const [preview, setPreview] = useState(null);
     // Create variabel for store data with useState here ...
     const [form, setForm] = useState({
       title: '',
@@ -126,7 +126,7 @@ export default function AddProduct() {
             )}
               {popUp && 
       <section className="popUpSection"
-      onClick={ () => setPopUp(false) }
+      onClick={ () => {setPopUp(false); navigate('/products-list')} }
       >
     <div className="notification-background">
       <h5>Product Has Been Added Successfully</h5>

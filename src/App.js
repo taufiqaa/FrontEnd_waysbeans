@@ -1,17 +1,16 @@
 import React from "react"
-import './components/App.css'
+import './App.css'
 import { Route, Routes, useNavigate } from "react-router-dom"
-import Home from"./components/pages/home"
-import DetailProduct from"./components/pages/detail-product"
-import Cart from "./components/pages/cart"
-import Profile from "./components/pages/profile"
-import CoffeData from "./components/molecules/coffe-data"
-import IncomeTransaction from "./components/pages/income-transaction"
-import AddProduct from "./components/pages/product"
-import UpdateProduct from './components/pages/update-product';
-import { API, setAuthToken } from './components/config/api'
-import ProductsList from './components/pages/product-list';
-import { UserContext } from "./components/context/userContext"
+import Home from"./pages/home"
+import DetailProduct from"./pages/detail-product"
+import Cart from "./pages/cart"
+import Profile from "./pages/profile"
+import IncomeTransaction from "./pages/income-transaction"
+import AddProduct from "./pages/product"
+import UpdateProduct from './pages/update-product';
+import { API, setAuthToken } from './config/api'
+import ProductsList from './pages/product-list';
+import { UserContext } from "./context/userContext"
 
 
 if (localStorage.token) {
@@ -63,7 +62,7 @@ export default function App() {
   return (
     <Routes>
     <Route path='/' element={<Home />} />
-    <Route path='/detail-product/:id' element={<DetailProduct data={CoffeData}/>} />
+    <Route path='/detail-product/:id' element={<DetailProduct/>} />
     <Route path='/cart' element={<Cart />}/>
     <Route path='/profile' element={<Profile />} />
     <Route path='/income' element={<IncomeTransaction />} />

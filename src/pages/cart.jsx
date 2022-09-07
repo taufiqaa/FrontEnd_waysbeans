@@ -1,11 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
-import Header from "../molecules/header";
-import Ethiopia from "../../assets/Ethiopia-beans.png";
-import bin from "../../assets/bin.svg";
+import Header from "../components/header";
+import bin from "../assets/bin.svg";
 import React, {useContext, useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { API } from '../config/api';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -38,37 +37,8 @@ console.log(carts)
 useEffect(()=>{
   getCart()
 }, [])
-  // let { data: cart, refetch } = useQuery("cartsCache", async () => {
-  //   const response = await API.get("/carts");
-  //   return response.data.data;
-  // });
-
-
-  // const dataCarts = cart?.filter((item)=>{
-  //   return item.transaction_id === null
-  // })
-
-  // console.log(dataCarts)
-
 
  
-  let resultTotal = carts?.reduce((addition, b) => {
-    return addition + b.sub_amount;
-  }, 0);
-
-  console.log("resultTotal" + resultTotal);
-
-
-  let qtyTotal = carts?.reduce((addition, b) => {
-    return addition + b.qty;
-  }, 0);
-
-  console.log("qtyTotal" + qtyTotal)
-
-  console.log(carts);
-
-   
-
     const handleDecrement = async(id, qty, sub_amount, price, stock, product_stock) =>{
       const config ={
         headers: {
@@ -120,19 +90,19 @@ useEffect(()=>{
         const response = await API.get("/carts");
         setCarts(response.data.data);
     }
-  // let handleDelete = async (id) => {
-  //   console.log(id);
-  //   await API.delete(`/cart/${id}`);
-  //   refetch();
-  // };
-
-
-   // payment condition
-   const form = {
-    amount: resultTotal,
-  };
-
-console.log(form)
+    let resultTotal = carts?.reduce((addition, b) => {
+      return addition + b.sub_amount;
+    }, 0);
+  
+    console.log("resultTotal" + resultTotal);
+  
+  
+    let qtyTotal = carts?.reduce((addition, b) => {
+      return addition + b.qty;
+    }, 0);
+  
+    console.log("qtyTotal" + qtyTotal)
+  
 
   const handleSubmit = useMutation(async (e) => {
     
@@ -153,12 +123,8 @@ console.log(form)
      await API.patch(`/cart/${carts[i].id}`, {"transaction_id": idTransaction}, config )
        }
   
-
-
     const snapToken = await API.get(`/midtrans/${idTransaction}`)
-
     const token = snapToken.data.data.token;
-
     console.log("cart"+carts)
 
     window.snap.pay(token, {

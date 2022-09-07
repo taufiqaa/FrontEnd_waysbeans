@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { useQuery, useMutation } from 'react-query';
-import Header from "../molecules/header"
+import Header from "../components/header"
 import { API } from '../config/api';
-import clip from "../../assets/clip.svg"
+import clip from "../assets/clip.svg"
 
 
 export default function UpdateProduct() {

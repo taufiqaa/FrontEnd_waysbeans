@@ -1,9 +1,8 @@
-import Header from "../molecules/header";
+import Header from "../components/header";
 import Button from "react-bootstrap/Button";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../components/context/userContext"
-// import CoffeeData from "../molecules/coffe-data";
+import { useEffect, useContext } from "react";
+import { UserContext } from "../context/userContext"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useMutation, useQuery } from 'react-query';
 import { API } from '../config/api';

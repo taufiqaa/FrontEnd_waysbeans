@@ -1,10 +1,9 @@
 import React from "react"
-import NavbarIcon from "../../assets/NavBarIcon.svg";
-import cartLogo from "../../assets/cart.svg"
+import NavbarIcon from "../assets/NavBarIcon.svg";
+import cartLogo from "../assets/cart.svg"
 import { Login, Register } from "./modal"
 import Dropdown from "./dropdown"
 import { useNavigate } from "react-router-dom"
-import { motion } from "framer-motion"
 import { UserContext } from "../context/userContext"
 import { useQuery } from 'react-query';
 import { API } from '../config/api';

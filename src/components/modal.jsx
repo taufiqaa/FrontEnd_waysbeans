@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
-import { UserContext } from "../../components/context/userContext";
+import { UserContext } from "../context/userContext";
 import { API } from '../config/api';
 import { useMutation } from 'react-query';
 

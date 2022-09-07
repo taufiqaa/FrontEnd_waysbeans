@@ -1,6 +1,6 @@
 import { useState,useEffect  } from "react";
-import Header from "../molecules/header";
-import waysbeansLogo from "../../assets/NavBarIcon.svg";
+import Header from "../components/header";
+import waysbeansLogo from "../assets/NavBarIcon.svg";
 import {API} from '../config/api'
 import { UserContext } from "../context/userContext";
 import { useContext } from "react";
@@ -69,7 +69,7 @@ export default function Profile() {
               <div className="picture-menu">
                 <img
                   className="picture-menuPurchased"
-                  src={item?.product?.image}
+                  src={"http://localhost:2500/uploads/"+item?.product?.image}
                   alt=""
                 />
               </div>
@@ -108,7 +108,7 @@ export default function Profile() {
             </div>
           </div>
         </div>
-                ))}
+        ))}
         </div>
         ))}
       </div>
