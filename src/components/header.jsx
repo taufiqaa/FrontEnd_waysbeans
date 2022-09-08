@@ -19,6 +19,8 @@ export default function Header() {
   const [modalRegister, setModalRegister] = React.useState(false)
   const [userDropdown, setUserDropdown] = React.useState(false)
   const [adminDropdown, setAdminDropdown] = React.useState(false)
+  
+
 
   function switchModal() {
     if (modalLogin) {
@@ -29,6 +31,9 @@ export default function Header() {
       setModalLogin(true)
     }
   }
+
+
+    
 
   function logOut() {
     setUserDropdown(false)
@@ -47,6 +52,8 @@ export default function Header() {
       setModalRegister(false)
     }
   },[state])
+
+
   return (
     <header>
     <nav className="navbar">

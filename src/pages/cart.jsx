@@ -2,30 +2,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Header from "../components/header";
 import bin from "../assets/bin.svg";
-import React, {useContext, useState} from "react";
+import React, { useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useMutation } from 'react-query';
 import { API } from '../config/api';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../context/userContext"
 
 export default function Cart() {
 
   let navigate = useNavigate();
-  const [state, dispatch] = useContext(UserContext)
   const [carts, setCarts] = useState([]);
-
-
-  // const [popUp] = React.useState(false);
-  
 
 const getCart = async ()  =>{
   try{
-      const response = await API.get("/carts");
-      const cartfilter = response.data.data.filter((item)=>{
-        return item.transaction_id ===null
-      }) 
+      const response = await API.get("/carts"); 
       setCarts(response.data.data);
 }catch(error){
   console.log(error);

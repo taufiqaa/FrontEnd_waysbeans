@@ -105,7 +105,6 @@ export function Login({modalLogin, setModalLogin, switchModal}) {
 }
 
 export function Register({modalRegister, setModalRegister, switchModal}) {
-    //   const [state, dispatch] = useContext(UserContext);
 
     const [message, setMessage] = useState(null);
 
