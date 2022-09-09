@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// import coffeeData from "./coffe-data";
 import { useQuery } from "react-query";
 import { API } from "../config/api";
 

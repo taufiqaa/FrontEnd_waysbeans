@@ -11,6 +11,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
 
+  const title = 'Cart';
+  document.title = 'WaysBeans | ' + title;
+
   let navigate = useNavigate();
   const [carts, setCarts] = useState([]);
 

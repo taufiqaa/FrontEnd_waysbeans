@@ -5,7 +5,6 @@ export const UserContext = createContext()
 const defaultState = {
     isLogin: false,
     user: {},
-    cart: {}
 }
 
 function reducer(user, action) {
@@ -18,10 +17,6 @@ function reducer(user, action) {
             return {
                 isLogin: true,
                 user: payload
-            };
-        case 'ADD_CART_SUCCESS':
-            return{
-                cart: {}
             };
         case 'AUTH_ERROR':
         case 'LOGOUT':

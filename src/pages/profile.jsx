@@ -8,6 +8,9 @@ import dateFormat from 'dateformat'
 
 export default function Profile() {
 
+  const title = 'Profile';
+  document.title = 'WaysBeans | ' + title;
+
   const [state] = useContext(UserContext)
 
 

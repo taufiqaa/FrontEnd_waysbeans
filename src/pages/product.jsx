@@ -8,6 +8,9 @@ import { useMutation } from 'react-query';
 
 export default function AddProduct() {
 
+  const title = 'Add Product';
+  document.title = 'WaysBeans | ' + title;
+
     const navigate = useNavigate()
     const [popUp, setPopUp] = React.useState(false);
     const [photoProduct, setPhotoProduct] = React.useState(<p>Photo Product</p>)

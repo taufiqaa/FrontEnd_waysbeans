@@ -59,7 +59,7 @@ export default function ProductsList() {
         <Row>
           <Col xs="6">
             <div className="text-header-category mb-4"
-            style={{color:`#613D2B`}}><h2>List Product</h2></div>
+            style={{color:`#613D2B`}}><h2>Products List</h2></div>
           </Col>
           <Col xs="12">
             { products?.length !== 0 ? (

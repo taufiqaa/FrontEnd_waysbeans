@@ -10,6 +10,8 @@ import waysbeansLogo from "../assets/NavBarIcon.svg";
 
 
 export default function IncomeTransaction(){
+  const title = 'Income Transaction';
+  document.title = 'WaysBeans | ' + title;
 
   const navigate = useNavigate()
   const [state, dispatch] = React.useContext(UserContext)
